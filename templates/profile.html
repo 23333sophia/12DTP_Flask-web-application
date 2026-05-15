@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <title>profile page</title>
+</head>
+
+<body>
+    <div class="container">
+       
+        
+        <h2>Member Profile</h2>
+        <div class="profile-grid">
+            <div class="jaehyun-card">
+                    <img src="{{ url_for('static', filename='images/jaehyunprofile.webp') }}" width ="150" alt="jaehyun profile">
+                <p>JAEHYUN</p>
+            </div>
+
+            <div class="sungho-card">
+                <img src="{{ url_for('static', filename='images/sunghoprofile.webp') }}" width ="150"  alt="sungho profile">
+                <p>SUNGHO</p>
+            </div>
+
+            <div class="riwoo-card">
+                <img src="{{ url_for('static', filename='images/riwooprofile.webp') }}" width ="150"  alt="riwoo profile">
+                <p>RIWOO</p>
+            </div>
+
+            <div class="taesan-card">
+                <img src="{{ url_for('static', filename='images/taesanprofile.webp') }}" width ="150"  alt="taesan profile">
+                <p>TAESAN</p>
+            </div>
+            
+            <div class="leehan-card">
+                <img src="{{ url_for('static', filename='images/leehanprofile.webp') }}" width ="150"  alt="leehan profile">
+                <p>LEEHAN</p>
+            </div>
+
+            <div class="woonhak-card">
+                <img src="{{ url_for('static', filename='images/woonhakprofile.webp') }}" width ="150"  alt="woonhak profile">
+                <p>WOONHAK</p>
+            </div>
+     
+    </div>
+</body>
+</html>
