@@ -20,7 +20,7 @@ def close_connection(exception):
 @app.route("/")
 def home():
     #home page
-    return "<p>Hello, World!</p>"
+    return render_template('home.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
