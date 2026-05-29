@@ -1,0 +1,77 @@
+body { 
+    font-family: sans-serif; text-align: center; background-color: #f0f0f0;
+ }
+
+.container { 
+    background-color: white;
+
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+}
+        
+    img { 
+        max-width: 100%; height: auto;
+        border-radius: 5px;
+     }
+
+    .profile-grid {
+         display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+    }
+
+    .jaehyun-card {
+        background-color: rgb(171, 242, 252);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        
+    }
+
+        .sungho-card {
+        background-color: rgb(171, 242, 252);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        
+    }
+
+        .riwoo-card {
+        background-color: rgb(171, 242, 252);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        
+    }
+
+        .taesan-card {
+        background-color: rgb(171, 242, 252);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        
+    }
+
+        .leehan-card {
+        background-color: rgb(171, 242, 252);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        
+    }
+
+        .woonhak-card {
+        background-color: rgb(171, 242, 252);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        
+    }
