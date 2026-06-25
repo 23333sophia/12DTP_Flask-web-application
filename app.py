@@ -27,6 +27,8 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def home():
+    sql = """SELECT * FROM members"""
+    information = query.db(sql)
     #home page
     return render_template('profile.html')
 
@@ -43,9 +45,11 @@ def login():
 
 
 # members app route
-@app.route("/product")
-def product():
-    return render_template("product.html")
+@app.route("/product/<name>")
+def product(name):
+    return render_template("product.html", name=name)
+
+
 
 
 if __name__ == "__main__":
