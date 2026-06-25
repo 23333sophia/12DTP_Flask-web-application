@@ -23,10 +23,30 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv\
 
+
+
 @app.route("/")
 def home():
     #home page
-    return render_template('home.html')
+    return render_template('profile.html')
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+
+
+
+# members app route
+@app.route("/product")
+def product():
+    return render_template("product.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)

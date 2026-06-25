@@ -8,15 +8,17 @@
 </head>
 
 <body>
-    <div class="container">
+
        
         
         <h2>Member Profile</h2>
         <div class="profile-grid">
-            <div class="jaehyun-card">
-                    <img src="{{ url_for('static', filename='images/jaehyunprofile.webp') }}" width ="150" alt="jaehyun profile">
-                <p>JAEHYUN</p>
-            </div>
+            <a href="{{url_for('jaehyun')}}">
+                <div class="jaehyun-card">
+                        <img src="{{ url_for('static', filename='images/jaehyunprofile.webp') }}" width ="150" alt="jaehyun profile">
+                    <p>JAEHYUN</p>
+                </div>
+            </a>
 
             <div class="sungho-card">
                 <img src="{{ url_for('static', filename='images/sunghoprofile.webp') }}" width ="150"  alt="sungho profile">
@@ -43,6 +45,6 @@
                 <p>WOONHAK</p>
             </div>
      
-    </div>
+
 </body>
 </html>
