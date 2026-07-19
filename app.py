@@ -31,10 +31,9 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def home():
-    sql = """SELECT * FROM member"""
-    information = query_db(sql)
-    #home page
-    return render_template('profile.html')
+    if 'user' not in session:
+        return redirect('/login')
+    return render_template('index.html')
 
 
 
