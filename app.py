@@ -8,6 +8,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 DATABASE = 'bnd.db'
 
 app = Flask(__name__)
+#secret key needed gor sessions and flash messages
+app.config['SECRET_KEY'] = "bnd"
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -62,7 +64,7 @@ def login():
         password = request.form['password']
         
         sql = "SELECT * FROM user WHERE username = ?"
-        user = query_db(sql=sql, args=(username,), one=True)
+        user = query_db(query=sql, args=(username,), one=True)
         
         if user:
             if check_password_hash(user[2], password):
