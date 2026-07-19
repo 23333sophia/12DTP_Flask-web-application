@@ -7,8 +7,22 @@
 </head>
 <body>
 
+    <div class="container">
+        {% if member %}
+            <h1>NAME: {{ member[1] }}</h1>
+            
+            <p>AGE: {{ member[2] }}</p>
+            
+            <p>BLOODTYPE: {{ member[3] }}</p>
+            
+            <p> GROUP POSITION: {{ member[4] }}</p>
 
-    {{name}}
+            <p>DESCRIPTION: {{ member[5] }}</p>
+            
+
+        <br><br>
+        <a href="/profile">go back</a>
+    </div>
     
 </body>
 </html>
