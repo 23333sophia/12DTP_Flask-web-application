@@ -86,34 +86,16 @@ def logout():
 
 
 
-
-
-
-
-
-'''
+# to profile page
 @app.route("/profile")
 def profile():
+    if 'user' not in session:
+        return redirect('/login')
+    
     return render_template("profile.html")
 
 
 
-
-
-
-
-
-
-
-
-
-# members app route
-@app.route("/product/<name>")
-def product(name):
-    return render_template("product.html", name=name)
-
-
-'''
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
