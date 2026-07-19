@@ -47,14 +47,16 @@ def signup():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-        hashed_password = generate_password_hash(password)
+        print(username, password)
+        hashed_password = generate_password_hash(password, method='pbkdf2')
+
         
         sql = "INSERT INTO user (username, password) VALUES (?,?)"
         query_db(sql,(username, hashed_password))
-        
+        get_db().commit()
         flash("You are now signed up! Login to continue")
         return redirect('/login')
-    return render_template('login.html')
+    return render_template('signup.html')
 
 
 @app.route('/login', methods=["GET","POST"])
