@@ -94,6 +94,13 @@ def profile():
     
     return render_template("profile.html")
 
+# to bring each member profile for product.html and not make html for each member
+@app.route("/product/<int:member_id>")
+def product(member_id):
+    sql = "SELECT * FROM member WHERE member_id = ?" 
+    member_data = query_db(sql, (member_id,), one=True)
+    
+    return render_template("product.html", member=member_data)
 
 
 
