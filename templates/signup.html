@@ -5,9 +5,9 @@
 <!-- the ACTION is the route we try to post to! -->
 <form action="/signup" method="post">
     <label for="username">Username</label>
-    <input type="text" name="username">
+    <input type="text" name="username" required maxlength="15">
     <label for="password">Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password" required maxlength="15">
     <button type="submit">Signup</button>
 </form>
 {% endblock %}
