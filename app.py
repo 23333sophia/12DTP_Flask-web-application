@@ -30,6 +30,7 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv\
 
 
+# Routes
 
 @app.route("/")
 def home():
@@ -38,10 +39,20 @@ def home():
     return render_template('index.html')
 
 
+@app.route("/discography")
+def discography():
+    if 'user' not in session:
+        return redirect('/login')
+    return render_template("discography.html")
 
 
+@app.route("/cart")
+def cart():
+    if 'user' not in session:
+        return redirect('/login')
+    return render_template("cart.html")
 
-#user sign up & login
+#user sign up & login route
 @app.route('/signup', methods=["GET","POST"])
 def signup():
     if request.method == "POST":
@@ -90,7 +101,7 @@ def logout():
 
 
 
-# to profile page
+# profile page route
 @app.route("/profile")
 def profile():
     if 'user' not in session:
