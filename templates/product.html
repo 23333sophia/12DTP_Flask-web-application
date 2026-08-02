@@ -26,10 +26,15 @@
             <hr>
             <!-- form to handle adding this specific member to the cart -->
             <form action="/add_to_inventory/{{ member[0] }}" method="post">
-                <button type="submit">
-                    Select Member as Product (Add to Inventory)
+                <div class="add_to_inventory_button">
+                    <button type="submit" ></button>
+                    Add to Inventory
+                </div>
                 </button>
             </form>
+        {% else %}
+            <h1>Product not found.</h1>
+        {% endif %}
 
         <br><br>
         <a href="/profile">go back</a>
@@ -38,4 +43,4 @@
 </body>
 </html>
 
-{% end block %}
+{% endblock %}

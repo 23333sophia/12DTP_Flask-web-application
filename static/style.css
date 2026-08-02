@@ -109,3 +109,11 @@ body {
   background-color: #04AA6D;
   color: white;
 }
+
+/* product. */
+.add_to_inventory_button {
+  padding: 10px 20px; 
+  background-color: rgb(171, 242, 252); 
+  border: none; border-radius: 5px; 
+  cursor: pointer;  
+}
