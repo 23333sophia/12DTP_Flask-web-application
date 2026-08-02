@@ -121,3 +121,18 @@ def product(member_id):
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
+
+# inventory system
+
+# to  add a member to the inventory
+@app.route("/add_to_inventory/<int:member_id>", methods=["POST"])
+def add_to_inventory(member_id):
+    if 'user' not in session:
+        flash("Please log in first to add to inventory")
+        return redirect('/login')
+    
+    # to create an empty list if user doesnt have a list yet
+    if 'inventory' not in session:
+        session['inventory'] = []
+
+    
