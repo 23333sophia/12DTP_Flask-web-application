@@ -46,11 +46,11 @@ def discography():
     return render_template("discography.html")
 
 
-@app.route("/cart")
-def cart():
+@app.route("/inventory")
+def inventory():
     if 'user' not in session:
         return redirect('/login')
-    return render_template("cart.html")
+    return render_template("inventory.html")
 
 #user sign up & login route
 @app.route('/signup', methods=["GET","POST"])
