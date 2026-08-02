@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>user cart</h1>
+<div class="container">
+    <h1>Your Inventory</h1>
+    
+    {% if inventory_items %}
+        <div class="profile-grid">
+            {% for item in inventory_items %}
+                <div class="jaehyun-card">
+                    <h3>{{ item[1] }}</h3>
+                    <p>Position: {{ item[4] }}</p>
+                    <a href="/product/{{ item[0] }}" style="font-size: 13px;">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Your inventory is currently empty.</p>
+    {% endif %}
+    
+    <br><br>
+    <a href="/profile">Continue Browsing</a>
+</div>
+
 
 {% endblock %}

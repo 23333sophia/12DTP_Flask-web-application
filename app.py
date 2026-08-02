@@ -119,8 +119,6 @@ def product(member_id):
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True, port=8080)
 
 # inventory system
 
@@ -153,6 +151,18 @@ def inventory():
     if 'user' not in session:
         return redirect('/login')
 
-# Get the list of member IDs saved in this user's session
-    inventory_ids = session.get('cart', [])
-    cart_members = []
+    # Getting list of member ids saved in current session
+    inventory_ids = session.get('inventory', [])
+    inventory_members = []
+
+    # each members details from db using id
+    for m_id in inventory_ids:
+        sql = "SELECT * FROM member WHERE member_id = ?"
+        member_data = query_db(sql, (m_id,), one=True)
+        if member_data:
+            inventory_members.append(member_data)
+    
+    return render_template("inventory.html", inventory_items=inventory_members)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8080)

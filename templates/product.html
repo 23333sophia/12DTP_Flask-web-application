@@ -13,16 +13,23 @@
 
     <div class="container">
         {% if member %}
-            <h1>NAME: {{ member[1] }}</h1>
+            <h1>NAME: {{ member[2] }}</h1>
             
-            <p>AGE: {{ member[2] }}</p>
+            <p>AGE: {{ member[3] }}</p>
             
-            <p>BLOODTYPE: {{ member[3] }}</p>
+            <p>BLOODTYPE: {{ member[5] }}</p>
             
             <p> GROUP POSITION: {{ member[4] }}</p>
 
-            <p>DESCRIPTION: {{ member[5] }}</p>
+            <p>DESCRIPTION: {{ member[6] }}</p>
             
+            <hr>
+            <!-- form to handle adding this specific member to the cart -->
+            <form action="/add_to_inventory/{{ member[0] }}" method="post">
+                <button type="submit">
+                    Select Member as Product (Add to Inventory)
+                </button>
+            </form>
 
         <br><br>
         <a href="/profile">go back</a>
