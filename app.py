@@ -135,4 +135,14 @@ def add_to_inventory(member_id):
     if 'inventory' not in session:
         session['inventory'] = []
 
-    
+ # saving produt to current inventory and saving to session so you cant 중복
+    current_inventory = session['inventory']
+    if member_id not in current_inventory:
+        current_inventory.append(member_id)
+        session['inventory'] = current_inventory
+        flash("Added to your inventory.")
+    else:
+        flash("This already exists in your inventory.")
+
+    return redirect('/inventory')
+
