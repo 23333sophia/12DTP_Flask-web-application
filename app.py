@@ -146,3 +146,13 @@ def add_to_inventory(member_id):
 
     return redirect('/inventory')
 
+
+# displaying items in inventory
+@app.route("/inventory")
+def inventory():
+    if 'user' not in session:
+        return redirect('/login')
+
+# Get the list of member IDs saved in this user's session
+    inventory_ids = session.get('cart', [])
+    cart_members = []
