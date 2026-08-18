@@ -39,11 +39,38 @@ def home():
     return render_template('index.html')
 
 
+
+# discograhpy route
 @app.route("/discography")
 def discography():
     if 'user' not in session:
         return redirect('/login')
-    return render_template("discography.html")
+
+    album_sql = "SELECT * FROM album ORDER BY album_id DESC"
+    all_albums = query_db(album_sql)
+
+    # list for songs to go in each albums
+    disco_data = []
+
+    if all_albums:
+        for album in all_albums:
+            current_album_id = album[0]
+            song_sql = "SELECT * FROM song WHERE album_id = ?"
+            songs = query_db(song_sql, (current_album_id,))
+            
+            # saving datas as a set for convienience
+            disco_data.append({
+                'album_info': album,
+                'song_list': songs if songs else []
+            })
+
+    return render_template("discography.html", disco_data=disco_data)
+
+
+
+
+
+
 
 #user sign up & login route
 @app.route('/signup', methods=["GET","POST"])

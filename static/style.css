@@ -34,12 +34,12 @@ body {
         
     }
 
-        .sungho-card {
-        background-color: rgb(171, 242, 252);
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+    .sungho-card {
+    background-color: rgb(171, 242, 252);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
         
     }
 
@@ -117,3 +117,13 @@ body {
   border: none; border-radius: 5px; 
   cursor: pointer;  
 }
+
+
+
+/* DISCOGRAPHY SECTION */
+
+.container h1{
+     margin-bottom: 30px;
+}
+
+

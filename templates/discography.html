@@ -1,6 +1,48 @@
 {% extends 'base.html' %}
+
 {% block content %}
+<div class="container">
+    <h1>BOYNEXTDOOR Discography</h1>
 
-<h1>discography</h1>>
+    {% if disco_data %}
+        {% for item in disco_data %}
+            <!-- full box of albums -->
+            <div class="album-section">
+                
+                <!-- album header (album cover, name) -->
+                <div class="album-header">
+                    <img src="{{ url_for('static', filename='images/' + item.album_info[4]) }}" 
+                         alt="Album Cover">
+                    
+                <!-- base descriptions-->
+                    <div>
+                        <h2>{{ item.album_info[1] }}</h2>
+                        <h4>Release Date: {{ item.album_info[2] }}</h4>
+                        <p>{{ item.album_info[3] }}</p>
+                    </div>
+                </div>
 
+                <!-- song list-->
+                <div class="song-list">
+                    <h4>Tracklist</h4>
+                    <ol>
+                        {% for song in item.song_list %}
+                            <li>
+                                {{ song[1] }}
+                            </li>
+                        {% else %}
+                            <li>Currently there aren't any songs registered.</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Currently there aren't discography registered.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Go Back To Home</a>
+</div>
 {% endblock %}
