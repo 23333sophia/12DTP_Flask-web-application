@@ -148,6 +148,8 @@ def add_to_inventory(member_id):
     if 'user' not in session:
         flash("Please log in first to add to inventory")
         return redirect('/login')
+        
+    user_id = session['user'][0]
     
     # to create an empty list if user doesnt have a list yet
     if 'inventory' not in session:
@@ -155,8 +157,13 @@ def add_to_inventory(member_id):
 
  # saving produt to current inventory and saving to session so you cant 중복
     current_inventory = session['inventory']
-    if member_id not in current_inventory:
-        current_inventory.append(member_id)
+
+    #saving saved item in a n-n way 
+    item = str(user_id) + "-" + str(member_id)
+
+
+    if item not in current_inventory:
+        current_inventory.append(item)
         session['inventory'] = current_inventory
         flash("Added to your inventory.")
     else:
@@ -165,24 +172,38 @@ def add_to_inventory(member_id):
     return redirect('/inventory')
 
 
+
 # displaying items in inventory
 @app.route("/inventory")
 def inventory():
     if 'user' not in session:
         return redirect('/login')
 
-    # Getting list of member ids saved in current session
-    inventory_ids = session.get('inventory', [])
+    user_id = session['user'][0]
+    
+    # getting list of member ids saved in current session
+    inventory_items_raw = session.get('inventory', [])
     inventory_members = []
 
-    # each members details from db using id
-    for m_id in inventory_ids:
-        sql = "SELECT * FROM member WHERE member_id = ?"
-        member_data = query_db(sql, (m_id,), one=True)
-        if member_data:
-            inventory_members.append(member_data)
+    #spliting ids from the n-n position to check conditions-which item it is
+    for item in inventory_items_raw:
+        if type(item) is not str:
+            continue
+        
+        parts = item.split("-")
+        item_user_id = int(parts[0])
+        item_member_id = int(parts[1])
+        
+        # bringing specific members details from db using id after checking specific user
+        if item_user_id == user_id:
+            sql = "SELECT * FROM member WHERE member_id = ?"
+            member_data = query_db(sql, (item_member_id,), one=True)
+            if member_data:
+                inventory_members.append(member_data)
     
     return render_template("inventory.html", inventory_items=inventory_members)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
