@@ -145,7 +145,7 @@ def product(member_id):
 # to  add a member to the inventory
 @app.route("/add_to_inventory/<int:member_id>", methods=["POST"])
 def add_to_inventory(member_id):
-    if 'user' not in session:
+    if 'user' not in session or session['user'] is None:
         flash("Please log in first to add to inventory")
         return redirect('/login')
         
@@ -189,7 +189,7 @@ def inventory():
     for item in inventory_items_raw:
         if type(item) is not str:
             continue
-        
+
         parts = item.split("-")
         item_user_id = int(parts[0])
         item_member_id = int(parts[1])
