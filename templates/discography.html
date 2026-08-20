@@ -11,31 +11,29 @@
                 
                 <!-- album header (album cover, name) -->
                 <div class="album-header">
-                    <img src="{{ url_for('static', filename='images/' + item.album_info[4]) }}" 
+                    <img class="album-cover" src="{{ url_for('static', filename='images/' + item.album_info[4]) }}" 
                          alt="Album Cover">
                     
-                <!-- base descriptions-->
+                    <!-- box for description and list of song details -->
                     <div>
                         <h2>{{ item.album_info[1] }}</h2>
                         <h4>Release Date: {{ item.album_info[2] }}</h4>
                         <p>{{ item.album_info[3] }}</p>
+
+                        <div class="song-list">
+                            <h4>Tracklist</h4>
+                            <ol>
+                                {% for song in item.song_list %}
+                                    <li>{{ song[1] }}</li>
+                                {% else %}
+                                    <li>Currently there aren't any songs registered.</li>
+                                {% endfor %}
+                            </ol>
+                        </div>
                     </div>
+                    
                 </div>
-
-                <!-- song list-->
-                <div class="song-list">
-                    <h4>Tracklist</h4>
-                    <ol>
-                        {% for song in item.song_list %}
-                            <li>
-                                {{ song[1] }}
-                            </li>
-                        {% else %}
-                            <li>Currently there aren't any songs registered.</li>
-                        {% endfor %}
-                    </ol>
-                </div>
-
+                
             </div>
         {% endfor %}
     {% else %}
