@@ -152,6 +152,11 @@ h2 {
    margin-right: auto;
 }
 
+.album-header {
+   display: flex;
+   align-items: flex-start;
+   gap: 40px;
+}
 
 .album-header > div {
    background-color: #89c4e2; 
@@ -168,12 +173,18 @@ h2 {
 }
 
 
-.album-header h4{
-   margin: 5px 0 0 0;
-   color: #888;
+.album-header h4 {
+   margin: 0 0 15px 0;
+   color: #f0f0f0;
    font-size: 14px;
 }
 
+.album-header p {
+   margin: 0 0 20px 0;
+   color: #ffffff;
+   font-size: 15px;
+   line-height: 1.5;
+}
 
 .album-header {
    display: flex;
@@ -184,11 +195,11 @@ h2 {
 
 
 .album-cover {
-   width: 350px;        /* 원하는 크기로 고정 */
-   height: 350px;       /* 원하는 크기로 고정 */
-   object-fit: cover;   /* 이미지가 비율에 맞게 꽉 차도록 크롭해줌 */
-   border-radius: 6px;  /* 모서리를 부드럽게 */
-   box-shadow: 0 4px 15px rgba(0,0,0,0.25); /* 살짝 그림자 효과 */
+   width: 250px;
+   height: 250px;              
+   object-fit: cover;
+   border-radius: 15px;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 
