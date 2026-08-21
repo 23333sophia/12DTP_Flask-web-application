@@ -153,7 +153,7 @@ h2 {
 }
 
 
-.album-header {
+.album-header > div {
    background-color: #89c4e2; 
    padding: 25px;
    border-radius: 15px;
