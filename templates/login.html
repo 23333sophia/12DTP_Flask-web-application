@@ -1,26 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Login</h1>
-<!-- A form to login with -->
-<!-- POST to the LOGIN route this is set by the action value -->
-<form action="/login" method="post">
-    <!-- 각 입력창 세트마다 br을 넣어 아래로 떨어지게 만듭니다 -->
-    <label for="username">Username</label><br>
-    <input type="text" name="username" required maxlength="15"><br><br>
-    <label for="password">Password</label><br>
-    <input type="password" name="password" required maxlength="15"><br><br>
+<div class="login-box">
+    <h1>Login</h1>
+    <!-- A form to login with -->
+    <!-- POST to the LOGIN route this is set by the action value -->
+    <form action="/login" method="post">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" required maxlength="15"><br><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" required maxlength="15"><br><br>
 
-    <button type="submit">Login</button>
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p class="login-for-inventory">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-
-    <button type="submit">Login</button>
-    <p>Don't have an account? <a href="/signup">Sign up here</a></p>
-</form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="login-error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+    <p class="signup-link">Don't have an account? <a href="/signup">Sign up here</a></p>
+</div>
 {% endblock %}
