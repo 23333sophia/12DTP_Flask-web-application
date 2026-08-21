@@ -176,7 +176,8 @@ def add_to_inventory(member_id):
 # displaying items in inventory
 @app.route("/inventory")
 def inventory():
-    if 'user' not in session:
+    if 'user' not in session or session['user'] is None:
+        flash("Log in to check your account")
         return redirect('/login')
 
     user_id = session['user'][0]

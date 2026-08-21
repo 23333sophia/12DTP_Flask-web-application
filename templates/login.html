@@ -10,6 +10,14 @@
     <input type="password" name="password" required maxlength="15">
     <button type="submit">Login</button>
 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="login-prompt-text">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <button type="submit">Login</button>
     <p>Don't have an account? <a href="/signup">Sign up here</a></p>
 </form>
