@@ -11,12 +11,12 @@
 </head>
 
 <body>
-
-       
-        
+    <div class="container">
         <h2>Member Profile</h2>
+        
         <div class="profile-grid">
-        <!-- 1. JAEHYUN -->
+            
+            <!-- 1. JAEHYUN -->
             <div class="member-card">
                 <a href="{{ url_for('product', member_id=3) }}" class="card-link">
                     <div class="card-image-container">
@@ -25,49 +25,88 @@
                             <span>LEARN MORE ▶</span>
                         </div>
                     </div>
-                    <div class="name-box">
+                    <div class="card-name-box">
                         <h3>JAEHYUN</h3>
                     </div>
                 </a>
             </div>
 
-            <a href="{{ url_for('product', member_id=1) }}">
-                <div class="sungho-card">
-                    <img src="{{ url_for('static', filename='images/sunghoprofile.webp') }}" width ="150"  alt="sungho profile">
-                    <p>SUNGHO</p>
-                </div>
-            </a>
+            <!-- 2. SUNGHO -->
+            <div class="member-card">
+                <a href="{{ url_for('product', member_id=1) }}" class="card-link">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/sunghoprofile.webp') }}" alt="sungho profile">
+                        <div class="hover-overlay">
+                            <span>LEARN MORE ▶</span>
+                        </div>
+                    </div>
+                    <div class="card-name-box">
+                        <h3>SUNGHO</h3>
+                    </div>
+                </a>
+            </div>
 
-            <a href="{{ url_for('product', member_id=2) }}">
-                <div class="riwoo-card">
-                    <img src="{{ url_for('static', filename='images/riwooprofile.webp') }}" width ="150"  alt="riwoo profile">
-                    <p>RIWOO</p>
-                </div>
-            </a>
+            <!-- 3. RIWOO -->
+            <div class="member-card">
+                <a href="{{ url_for('product', member_id=2) }}" class="card-link">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/riwooprofile.webp') }}" alt="riwoo profile">
+                        <div class="hover-overlay">
+                            <span>LEARN MORE ▶</span>
+                        </div>
+                    </div>
+                    <div class="card-name-box">
+                        <h3>RIWOO</h3>
+                    </div>
+                </a>
+            </div>
 
-            <a href="{{ url_for('product', member_id=4) }}">
-                <div class="taesan-card">
-                    <img src="{{ url_for('static', filename='images/taesanprofile.webp') }}" width ="150"  alt="taesan profile">
-                    <p>TAESAN</p>
-                </div>
-            </a>
+            <!-- 4. TAESAN -->
+            <div class="member-card">
+                <a href="{{ url_for('product', member_id=4) }}" class="card-link">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/taesanprofile.webp') }}" alt="taesan profile">
+                        <div class="hover-overlay">
+                            <span>LEARN MORE ▶</span>
+                        </div>
+                    </div>
+                    <div class="card-name-box">
+                        <h3>TAESAN</h3>
+                    </div>
+                </a>
+            </div>
 
-            <a href="{{ url_for('product', member_id=5) }}">
-                <div class="leehan-card">
-                    <img src="{{ url_for('static', filename='images/leehanprofile.webp') }}" width ="150"  alt="leehan profile">
-                    <p>LEEHAN</p>
-                </div>
-            </a>
+            <!-- 5. LEEHAN -->
+            <div class="member-card">
+                <a href="{{ url_for('product', member_id=5) }}" class="card-link">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/leehanprofile.webp') }}" alt="leehan profile">
+                        <div class="hover-overlay">
+                            <span>LEARN MORE ▶</span>
+                        </div>
+                    </div>
+                    <div class="card-name-box">
+                        <h3>LEEHAN</h3>
+                    </div>
+                </a>
+            </div>
 
-            <a href="{{ url_for('product', member_id=6) }}">
-                <div class="woonhak-card">
-                    <img src="{{ url_for('static', filename='images/woonhakprofile.webp') }}" width ="150"  alt="woonhak profile">
-                    <p>WOONHAK</p>
-                </div>
-            </a>
-     
+            <!-- 6. WOONHAK -->
+            <div class="member-card">
+                <a href="{{ url_for('product', member_id=6) }}" class="card-link">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/woonhakprofile.webp') }}" alt="woonhak profile">
+                        <div class="hover-overlay">
+                            <span>LEARN MORE ▶</span>
+                        </div>
+                    </div>
+                    <div class="card-name-box">
+                        <h3>WOONHAK</h3>
+                    </div>
+                </a>
+            </div>
 
+        </div>
+    </div> 
 </body>
-</html>
-
 {% endblock %}
