@@ -16,12 +16,20 @@
         
         <h2>Member Profile</h2>
         <div class="profile-grid">
-            <a href="{{ url_for('product', member_id=3) }}">
-                <div class="jaehyun-card">
-                        <img src="{{ url_for('static', filename='images/jaehyunprofile.webp') }}" width ="150" alt="jaehyun profile">
-                    <p>JAEHYUN</p>
-                </div>
-            </a>
+        <!-- 1. JAEHYUN -->
+            <div class="member-card">
+                <a href="{{ url_for('product', member_id=3) }}" class="card-link">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/jaehyunprofile.webp') }}" alt="jaehyun profile">
+                        <div class="hover-overlay">
+                            <span>LEARN MORE ▶</span>
+                        </div>
+                    </div>
+                    <div class="name-box">
+                        <h3>JAEHYUN</h3>
+                    </div>
+                </a>
+            </div>
 
             <a href="{{ url_for('product', member_id=1) }}">
                 <div class="sungho-card">
