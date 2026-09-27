@@ -66,7 +66,20 @@ def discography():
 
     return render_template("discography.html", disco_data=disco_data)
 
+# dont allow users who have logged out access by clicking back in browser
+@app.after_request
+def add_no_cache_headers(response):
+    """
+    tells the browser not to cache any pages & forces a fresh server request when navigating back
+    so dont allow users who have logged out access by clicking back in browser
+    """
+    response.headers["Cache-Control"] = (
+        "no-store, no-cache, must-revalidate, max-age=0"
+    )
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
 
+    return response
 
 
 
@@ -101,9 +114,13 @@ def login():
         
         if user:
             if check_password_hash(user[2], password):
-                session['user'] = user
-                flash("Welcome!")
-                return redirect('/')
+                if session['active'] == 0:
+                    flash('account disabled')
+                    return redirect('/')
+                else:
+                    session['user'] = user                    
+                    flash("Welcome!")
+                    return redirect('/')
             else:
                 flash("Incorrect password")
         else:
@@ -142,34 +159,7 @@ def product(member_id):
 
 # inventory system
 
-# to  add a member to the inventory
-@app.route("/add_to_inventory/<int:member_id>", methods=["POST"])
-def add_to_inventory(member_id):
-    if 'user' not in session or session['user'] is None:
-        flash("Please log in first to add to inventory")
-        return redirect('/login')
-        
-    user_id = session['user'][0]
-    
-    # to create an empty list if user doesnt have a list yet
-    if 'inventory' not in session:
-        session['inventory'] = []
 
- # saving produt to current inventory and saving to session so you cant 중복
-    current_inventory = session['inventory']
-
-    #saving saved item in a n-n way 
-    item = str(user_id) + "-" + str(member_id)
-
-
-    if item not in current_inventory:
-        current_inventory.append(item)
-        session['inventory'] = current_inventory
-        flash("Added to your inventory.")
-    else:
-        flash("This already exists in your inventory.")
-
-    return redirect('/inventory')
 
 
 
@@ -203,6 +193,40 @@ def inventory():
                 inventory_members.append(member_data)
     
     return render_template("inventory.html", inventory_items=inventory_members)
+
+
+
+
+
+# to  add a member to the inventory
+@app.route("/add_to_inventory/<int:member_id>", methods=["POST"])
+def add_to_inventory(member_id):
+    if 'user' not in session or session['user'] is None:
+        flash("Please log in first to add to inventory")
+        return redirect('/login')
+        
+    user_id = session['user'][0]
+    
+    # to create an empty list if user doesnt have a list yet
+    if 'inventory' not in session:
+        session['inventory'] = []
+
+ # saving produt to current inventory and saving to session so you cant 중복
+    current_inventory = session['inventory']
+
+    #saving saved item in a n-n way 
+    item = str(user_id) + "-" + str(member_id)
+
+
+    if item not in current_inventory:
+        current_inventory.append(item)
+        session['inventory'] = current_inventory
+        flash("Added to your inventory.")
+    else:
+        flash("This already exists in your inventory.")
+
+    return redirect('/inventory')
+
 
 
 
