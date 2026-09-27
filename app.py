@@ -113,19 +113,22 @@ def login():
         user = query_db(query=sql, args=(username,), one=True)
         
         if user:
-            if check_password_hash(user[2], password):
-                if session['active'] == 0:
-                    flash('account disabled')
-                    return redirect('/')
+            if check_password_hash(user[2], password): 
+                # checking whether the account is disabled
+                if user[3] == 0:
+                    flash('Account disabled.')
+                    return render_template('login.html')
                 else:
-                    session['user'] = user                    
+                    session['user'] = user[1]                    
                     flash("Welcome!")
                     return redirect('/')
             else:
                 flash("Incorrect password")
         else:
             flash("Username does not exist")
+            
     return render_template('login.html')
+
 
 
 @app.route('/logout')
