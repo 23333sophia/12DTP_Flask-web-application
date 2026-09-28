@@ -189,7 +189,7 @@ def inventory():
         flash("Log in to check your account")
         return redirect('/login')
 
-    user_id = session['user'][0]
+    user_id = session['user_id']
     
     # getting list of member ids saved in current session
     inventory_items_raw = session.get('inventory', [])
@@ -224,7 +224,7 @@ def add_to_inventory(member_id):
         flash("Please log in first to add to inventory")
         return redirect('/login')
         
-    user_id = session['user'][0]
+    user_id = session['user_id']
     
     # to create an empty list if user doesnt have a list yet
     if 'inventory' not in session:
