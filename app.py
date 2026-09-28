@@ -92,6 +92,21 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         print(username, password)
+        
+        # requiring atleast a number and some character when signing up
+        numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        has_num = False
+        has_letter = False
+
+        for char in password:
+            if char in numbers:
+                has_num = True
+            else:
+                # considering all other than numbers are letters
+                has_letter = True
+        if has_num == False or has_letter == False:
+            flash("Password must include both letters and numbers")
+            return render_template('signup.html')
         hashed_password = generate_password_hash(password, method='pbkdf2')
 
         
@@ -119,7 +134,8 @@ def login():
                     flash('Account disabled.')
                     return render_template('login.html')
                 else:
-                    session['user'] = user[1]                    
+                    session['user'] = user[1]       # saving username in session
+                    session['user_id'] = user[0]    # saving users own id in db                
                     flash("Welcome!")
                     return redirect('/')
             else:
