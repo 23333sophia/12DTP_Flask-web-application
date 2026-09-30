@@ -149,7 +149,9 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session['user'] = None
+    # cleanly remove session keys instead of setting them to none
+    session.pop('user', None)
+    session.pop('user_id', None)
     flash("Logged out")
     return redirect('/')
 
@@ -189,20 +191,26 @@ def inventory():
         flash("Log in to check your account")
         return redirect('/login')
 
-    user_id = session['user_id']
-    
-    # getting list of member ids saved in current session
+    user_id = session.get('user_id')
     inventory_items_raw = session.get('inventory', [])
     inventory_members = []
 
-    #spliting ids from the n-n position to check conditions-which item it is
     for item in inventory_items_raw:
-        if type(item) is not str:
+        # checking boundaries- format safety to prevent crashes from bad data formats
+        if type(item) is not str or "-" not in item:
             continue
 
         parts = item.split("-")
-        item_user_id = int(parts[0])
-        item_member_id = int(parts[1])
+        # ensuring it split into exactly 2 parts (user_id and member_id)
+        if len(parts) != 2:
+            continue
+            
+        # try and except block to ensure the web app will not crash if data isn't a clean number
+        try:
+            item_user_id = int(parts[0])
+            item_member_id = int(parts[1])
+        except ValueError:
+            continue  # skip to the next item if conversion fails
         
         # bringing specific members details from db using id after checking specific user
         if item_user_id == user_id:
