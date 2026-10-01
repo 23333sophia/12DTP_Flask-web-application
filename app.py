@@ -34,8 +34,6 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def home():
-    if 'user' not in session:
-        return redirect('/login')
     return render_template('index.html')
 
 
