@@ -10,13 +10,6 @@
         <label for="password">Password</label><br>
         <input type="password" name="password" required maxlength="15"><br><br>
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <p class="login-error">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
         <button type="submit" class="login-btn">Login</button>
     </form>
     <p class="signup-link">Don't have an account? <a href="/signup">Sign up here</a></p>
