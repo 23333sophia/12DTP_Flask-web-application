@@ -2,15 +2,6 @@
 
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
     <div class="container">
         {% if member %}
             <h1>NAME: {{ member[1] }}</h1>
@@ -29,7 +20,6 @@
                 <div class="add_to_inventory_button">
                     <button type="submit" >Add to Inventory</button>
                 </div>
-                </button>
             </form>
         {% else %}
             <h1>Product not found.</h1>
@@ -38,8 +28,4 @@
         <br><br>
         <a href="/profile">go back</a>
     </div>
-    
-</body>
-</html>
-
 {% endblock %}
