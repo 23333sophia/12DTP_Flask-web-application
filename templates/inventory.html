@@ -7,10 +7,10 @@
     {% if inventory_items %}
         <div class="profile-grid">
             {% for item in inventory_items %}
-                <div class="jaehyun-card">
+                <div class="member-card">
                     <h3>{{ item[1] }}</h3>
-                    <p>Position: {{ item[4] }}</p>
-                    <a href="/product/{{ item[0] }}" style="font-size: 13px;">View Details</a>
+                    <p>Blood Type: {{ item[4] }}</p>
+                    <a href="/product/{{ item[0] }}" style="font-size: 13px; color: #007BFF;">View Details</a>
                 </div>
             {% endfor %}
         </div>
