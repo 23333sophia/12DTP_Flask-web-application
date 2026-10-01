@@ -43,7 +43,8 @@ def home():
 # discograhpy route
 @app.route("/discography")
 def discography():
-    if 'user' not in session:
+    if 'user' not in session or session['user'] is None:
+        flash("Log in to check Boy Next Door's discography.")
         return redirect('/login')
 
     album_sql = "SELECT * FROM album ORDER BY album_id DESC"
@@ -171,7 +172,8 @@ def logout():
 # profile page route
 @app.route("/profile")
 def profile():
-    if 'user' not in session:
+    if 'user' not in session or session['user'] is None:
+        flash("Log in to check profile")
         return redirect('/login')
     
     return render_template("profile.html")
@@ -188,10 +190,6 @@ def product(member_id):
 
 
 # inventory system
-
-
-
-
 
 # displaying items in inventory
 @app.route("/inventory")
