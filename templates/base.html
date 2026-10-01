@@ -23,6 +23,7 @@
     </nav>
     <!-- This is the main page with most stuff we need in it -->
     <!-- moved flash messages here so they appear cleanly on every page without bullet points -->
+    <!-- 2. Flash Messages Zone -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <div class="flash-messages-container">
@@ -32,6 +33,11 @@
     </div>
     {% endif %}
     {% endwith %}
+
+    <!-- placing block content for all other html that extends with base.html will show up -->
+    <div class="main-body-content">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 
 </html>
