@@ -1,10 +1,95 @@
-<!-- This is how we extend the base layout so we don;t need to do it again! -->
+<!-- This is how we extend the base layout so we don't need to do it again! -->
 {% extends 'base.html' %}
-<!-- Now i can fill out the blocks that I want -->
+
 {% block content %}
-    <h1>BOY NEXT DOOR</h1>
-    {% if session['user'] %}
-    <!-- the whole user tuple is stored in the session this time- so it's id,username,passwordhash is available to us at all times -->
-        <p>Welcome {{ session['user'][1] }}</p>
-    {% endif %}
+<div class="home-container">
+    
+    <!-- BOYNEXTDOOR Logo -->
+    <div class="home-logo-box">
+        <img src="{{ url_for('static', filename='images/BOYNEXTDOOR_Logo.png') }}" alt="BOYNEXTDOOR LOGO" class="home-main-logo">
+        
+        {% if session['user'] %}
+            <p class="welcome-text">Welcome, {{ session['user'][1] }}!</p>
+        {% endif %}
+    </div>
+
+    <!-- bottom section of home divided by thirds -->
+    <div class="home-grid">
+        
+        <!-- about boy next door - left column-->
+        <div class="home-column about-box">
+            <h2>About BND</h2>
+            <hr>
+            <!-- description of boy next door-->
+            <p>, often shortened as BND, is a six-member South Korean boy group formed by KOZ Entertainment, a subsidiary label under HYBE founded by rapper and producer Zico. The group—consisting of members Sungho, Riwoo, Jaehyun, Taesan, Leehan, and Woonhak—debuted on May 30, 2023, with the single album Who!. True to their name, they embrace an approachable, "boy next door" image, creating relatable, easy-listening music about everyday experiences and youth, with several members actively involved in writing and producing their own tracks.</p>
+            <p>They debuted on May 30, 2023, with their first single album 'WHO!'.</p>
+
+            <!-- BND spotify streaming box -->
+            <div class="spotify-banner">
+                <p class="spotify-album-title">[HOME: DELUXE]</p>
+                <div class="spotify-cover-container">
+                    <img src="{{ url_for('static', filename='images/home_deluxe_album.png') }}" alt="HOME: DELUXE Album Cover" class="spotify-cover-img">
+                </div>
+                <a href="https://open.spotify.com/album/7xB5Mzz9ScCgVHzzhx1sGq?utm_medium=share&utm" target="_blank" class="spotify-stream-btn">
+                    <!-- small spotify icon-->
+                    <img src="{{ url_for('static', filename='images/spotify_logo.png') }}" alt="Spotify" class="spotify-btn-icon">
+                    <div class="spotify-btn-text">
+                        <span class="stream-action">Stream on Spotify!</span>
+                        <span class="stream-details">Album • BOYNEXTDOOR</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!--boy next door concept photo - centre column-->
+        <div class="home-column photo-box">
+            <img src="{{ url_for('static', filename='images/오늘만알러뷰_단체컨포.webp') }}" alt="BND Concept group Photo" class="home-group-img">
+        </div>
+
+        <!-- other media links - right column-->
+        <div class="home-column media-box">
+            <h2>Official BND Media</h2>
+            <hr>
+            <ul class="media-list">
+                <!-- Youtube link-->
+                <li>
+                    <a href="https://youtube.com" target="_blank" class="media-link">
+                        <img src="{{ url_for('static', filename='images/Youtube_logo.png') }}" alt="youtube" class="media-icon">
+                        <span>BND YOUTUBE</span>
+                    </a>
+                </li>
+                <!-- x link -->
+                <li>
+                    <a href="https://x.com" target="_blank" class="media-link">
+                        <img src="{{ url_for('static', filename='images/x_logo.png') }}" alt="X" class="media-icon">
+                        <span>BND TWITTER</span>
+                    </a>
+                </li>
+                <!-- instagram link -->
+                <li>
+                    <a href="https://instagram.com" target="_blank" class="media-link">
+                        <img src="{{ url_for('static', filename='images/instagram_logo.png') }}" alt="instagram" class="media-icon">
+                        <span>BND INSTAGRAM</span>
+                    </a>
+                </li>
+                <!-- weverse link -->
+                <li>
+                    <a href="https://weverse.io" target="_blank" class="media-link">
+                        <img src="{{ url_for('static', filename='images/weverse_logo.png') }}" alt="weverse" class="media-icon">
+                        <span>BND WEVERSE</span>
+                    </a>
+                </li>
+                <!-- facebook link -->
+                <li>
+                    <a href="https://weverse.io" target="_blank" class="media-link">
+                        <img src="{{ url_for('static', filename='images/faccebook_logo.png') }}" alt="facebook" class="media-icon">
+                        <span>BND FACEBOOK</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
 {% endblock %}
