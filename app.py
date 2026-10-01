@@ -27,7 +27,7 @@ def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     cur.close()
-    return (rv[0] if rv else None) if one else rv\
+    return (rv[0] if rv else None) if one else rv
 
 
 # Routes
@@ -89,6 +89,11 @@ def add_no_cache_headers(response):
 @app.route('/signup', methods=["GET","POST"])
 def signup():
     if request.method == "POST":
+        #blocking missing data and empty sign ups
+        if 'username' not in request.form or 'password' not in request.form:
+            flash("Missing form fields.")
+            return render_template('signup.html')
+        
         username = request.form['username']
         password = request.form['password']
         print(username, password)
@@ -121,6 +126,10 @@ def signup():
 @app.route('/login', methods=["GET","POST"])
 def login():
     if request.method == "POST":
+        # preventing empty form field, boundary error when login
+        if 'username' not in request.form or 'password' not in request.form:
+            flash("Missing login fields.")
+            return render_template('login.html')
         username = request.form['username']
         password = request.form['password']
         
