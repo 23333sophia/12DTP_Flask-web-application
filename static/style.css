@@ -229,50 +229,23 @@ h2 {
 }
 
 
-
-/* ========================== HOME PAGE LAYOUT (index.html) 
-- todo
-
-top section
-.home-container
-.home-logo-box
-.home-main logo
-.welcome-text
-
-bottom section
-.home-grid
-.home-column
-.home-column h2 + hr
-
-.photo-box
-.home-portrait-img
-
-media list
-.media-list li
-.media-link
-.media-link:hover
-.media icon
-
-
-
-================================ */
+/* ========================== HOME PAGE LAYOUT (index.html) ================================ */
 
 .home-container {
-    max-width: 1200px;
+    max-width: 1400px; /* using full screen to remove awkward gaps */
     margin: 0 auto;
     padding: 20px;
-}
+} survivability */
 
 /* logo section */
 .home-logo-box {
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .home-main-logo {
     max-width: 500px; /* logo size control */
     width: 100%;
     height: auto;
-    margin-top: 20px;
 }
 
 .welcome-text {
@@ -281,5 +254,178 @@ media list
     font-weight: bold;
 }
 
+.home-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.8fr 0.2fr; /*width control for the three grids */
+    gap: 15px;
+    align-items: start;
+}
 
-/* 3 Column Grid Styling */
+/* 3 column grids styling */
+.home-column {
+    background-color: transparent;
+    padding: 5px; 
+    border-radius: 0;
+    box-shadow: none;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* writing about bnd on the left grid */
+.about-box p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2b2b2b;
+    margin-bottom: 15px;
+}
+
+/* centre image - maximizing width to blend seamlessly with the text block */
+.photo-box {
+    padding: 0;
+    overflow: hidden;
+    background: none;
+    box-shadow: none;
+}
+
+.home-group-img {
+    width: 100%;
+    height: auto; 
+    max-height: 800px; /* sizing centre img in the centre */
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/*list forming the right edge sidebar */
+.media-box {
+    min-height: auto;
+    padding: 5px 0 5px 15px; /* splitting from the centre photo and sticking it to the right end */
+}
+
+.home-column h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #222222;
+}
+
+.home-column hr {
+    border: 0;
+    height: 2px;
+    background-color: #89c4e2;
+    margin-bottom: 15px;
+}
+
+/* the icon link lists */
+.media-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+    align-items: flex-start; /* setting icons to be on the right end */
+}
+
+.media-list li {
+    width: auto;
+}
+
+.media-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #f3eff0;
+    transition: background-color 0.15s; /* colour change when hovered to icons */
+    width: 48px;
+    height: 48px;
+}
+
+/* colour change to blue when hovered for the link icons right column */
+.media-link:hover {
+    background-color: #89c4e2;
+}
+
+.media-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+}
+
+/* spotify widget on the left grid  */
+
+/* main grid */
+.spotify-banner {
+    margin-top: 25px;
+    background-color: #d1f4cd;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+}
+
+.spotify-album-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111;
+    margin: 0 0 10px 0;
+}
+
+/* spotify album img container */
+.spotify-cover-container {
+    width: 100%;
+    max-width: 160px; 
+    margin: 0 auto 10px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.spotify-cover-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* streaming btn below album */
+.spotify-stream-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #111;
+    padding: 5px;
+    border-radius: 6px;
+    transition: background 0.6s; /* colour change when hovered to btn */
+}
+
+.spotify-stream-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.spotify-btn-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.spotify-btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.stream-action {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.stream-details {
+    font-size: 10px;
+}
+
