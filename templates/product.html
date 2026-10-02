@@ -15,18 +15,18 @@
                 <div class="product-right-info">
                     <h1>NAME: {{ member[1] }}</h1>
                     
-                    <p>AGE: {{ member[2] }}</p>
+                    <p><strong>AGE:</strong> {{ member[2] }}</p>
                     
-                    <p>BLOODTYPE: {{ member[4] }}</p>
+                    <p><strong>BLOODTYPE:</strong> {{ member[4] }}</p>
                     
-                    <p>GROUP POSITION: {{ member[3] }}</p>
+                    <p><strong>GROUP POSITION:</strong> {{ member[3] }}</p>
 
-                    <p>DESCRIPTION: {{ member[5] }}</p>
+                    <p><strong>DESCRIPTION:</strong> {{ member[5] }}</p>
                     
                     <hr>
                     <!-- form to handle adding this specific member to the cart -->
                     <form action="/add_to_inventory/{{ member[0] }}" method="post">
-
+                        
                         <!-- button container-->
                         <button type="submit" class="action-btn inventory-add-btn">Add to Inventory</button>
                     </form>
