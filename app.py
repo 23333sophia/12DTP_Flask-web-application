@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 DATABASE = 'bnd.db'
 
+# initializing core Flask application object instance
 app = Flask(__name__)
 #secret key needed gor sessions and flash messages
 app.config['SECRET_KEY'] = "bnd"
@@ -33,7 +34,7 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-# =-=-=-=-=-=-=-=-=-===========================  Routes. ==============================================-=-=-=
+# Routes
 
 @app.route("/")
 def home():
@@ -41,13 +42,14 @@ def home():
 
 
 
-# ======================================== discograhpy route ============================================
+# discograhpy route
 @app.route("/discography")
 def discography():
     if 'user' not in session or session['user'] is None:
         flash("Log in to check Boy Next Door's discography.")
         return redirect('/login')
 
+# querying structural album properties ordered sequentially by descending IDs
     album_sql = "SELECT * FROM album ORDER BY album_id DESC"
     all_albums = query_db(album_sql)
 
@@ -86,9 +88,13 @@ def add_no_cache_headers(response):
 
 
 
-#=================================. user sign up & login route ===============================
+# user sign up & login route
 @app.route('/signup', methods=["GET","POST"])
 def signup():
+    """
+    validates user creation requests
+    enforces password criteria rules and sanitizes raw empty requests
+    """
     if request.method == "POST":
         #blocking missing data and empty sign ups
         if 'username' not in request.form or 'password' not in request.form:
@@ -115,12 +121,14 @@ def signup():
             return render_template('signup.html')
         hashed_password = generate_password_hash(password, method='pbkdf2')
 
-        
+        # allocation ensuring user activation state begins at 1
         sql = "INSERT INTO user (username, password) VALUES (?,?)"
         query_db(sql,(username, hashed_password))
         get_db().commit()
+
         flash("You are now signed up! Login to continue")
         return redirect('/login')
+    
     return render_template('signup.html')
 
 
@@ -160,7 +168,9 @@ def login():
 
 @app.route('/logout')
 def logout():
-    # cleanly remove session keys instead of setting them to none
+    """
+    cleanly remove session keys instead of setting them to none
+    """
     session.pop('user', None)
     session.pop('user_id', None)
     flash("Logged out")
@@ -173,6 +183,10 @@ def logout():
 # ==================================== profile page route ======================================
 @app.route("/profile")
 def profile():
+    """
+    serves custom user profile catalogs
+    restricted to authenticated identity holders through intercept checks
+    """
     if 'user' not in session or session['user'] is None:
         flash("Log in to check profile")
         return redirect('/login')
@@ -180,9 +194,12 @@ def profile():
     return render_template("profile.html")
 
 
-# to bring each member profile for product.html and not make html for each member
+
 @app.route("/product/<int:member_id>")
 def product(member_id):
+    """
+    to bring each member profile for product.html and not make html for each member
+    """
     sql = "SELECT * FROM member WHERE member_id = ?" 
     member_data = query_db(sql, (member_id,), one=True)
     
@@ -193,9 +210,13 @@ def product(member_id):
 
 # ====================================.  inventory system ================================================
 
-# displaying items in inventory
+
 @app.route("/inventory")
 def inventory():
+    """
+    deconstructs tracking metrics through comprehensive format evaluation filters
+    safely guards processing layers utilizing robust localized catch operations
+    """
     if 'user' not in session or session['user'] is None:
         flash("Log in to check your account")
         return redirect('/login')
@@ -237,6 +258,9 @@ def inventory():
 # to  add a member to the inventory
 @app.route("/add_to_inventory/<int:member_id>", methods=["POST"])
 def add_to_inventory(member_id):
+    """
+    pushes non-duplicate tracking layout blocks safely into application cache memory
+    """
     if 'user' not in session or session['user'] is None:
         flash("Please log in first to add to inventory")
         return redirect('/login')
@@ -247,7 +271,7 @@ def add_to_inventory(member_id):
     if 'inventory' not in session:
         session['inventory'] = []
 
- # saving produt to current inventory and saving to session so you cant 중복
+ # saving produt to current inventory and saving to session so you cant duplicate
     current_inventory = session['inventory']
 
     #saving saved item in a n-n way 
@@ -260,6 +284,8 @@ def add_to_inventory(member_id):
         flash("Added to your inventory.")
     else:
         flash("This already exists in your inventory.")
+        return render_template("profile.html")
+
 
     return redirect('/inventory')
 

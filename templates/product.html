@@ -1,31 +1,45 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
     <div class="container">
         {% if member %}
-            <h1>NAME: {{ member[1] }}</h1>
-            
-            <p>AGE: {{ member[2] }}</p>
-            
-            <p>BLOODTYPE: {{ member[4] }}</p>
-            
-            <p> GROUP POSITION: {{ member[3] }}</p>
-
-            <p>DESCRIPTION: {{ member[5] }}</p>
-            
-            <hr>
-            <!-- form to handle adding this specific member to the cart -->
-            <form action="/add_to_inventory/{{ member[0] }}" method="post">
-                <div class="add_to_inventory_button">
-                    <button type="submit" >Add to Inventory</button>
+            <!--split screen layout left: image & right: information -->
+            <div class="product-layout-box">
+                
+                <!-- left side - member profile image -->
+                <div class="product-left-image">
+                    <img src="{{ url_for('static', filename='images/' + member[1].lower() + 'profile.webp') }}" alt="{{ member[1] }} profile">
                 </div>
-            </form>
+
+                <!-- right side - member data + elements -->
+                <div class="product-right-info">
+                    <h1>NAME: {{ member[1] }}</h1>
+                    
+                    <p>AGE: {{ member[2] }}</p>
+                    
+                    <p>BLOODTYPE: {{ member[4] }}</p>
+                    
+                    <p>GROUP POSITION: {{ member[3] }}</p>
+
+                    <p>DESCRIPTION: {{ member[5] }}</p>
+                    
+                    <hr>
+                    <!-- form to handle adding this specific member to the cart -->
+                    <form action="/add_to_inventory/{{ member[0] }}" method="post">
+
+                        <!-- button container-->
+                        <button type="submit" class="action-btn inventory-add-btn">Add to Inventory</button>
+                    </form>
+                    
+                    <br>
+                    <a href="/profile" class="action-btn back-btn-link">go back</a>
+                </div>
+
+            </div>
         {% else %}
             <h1>Product not found.</h1>
+            <br>
+            <a href="/profile" class="action-btn back-btn-link">go back</a>
         {% endif %}
-
-        <br><br>
-        <a href="/profile">go back</a>
     </div>
 {% endblock %}
