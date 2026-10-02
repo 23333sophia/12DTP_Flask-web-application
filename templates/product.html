@@ -7,12 +7,12 @@
             <div class="product-layout-box">
                 
                 <!-- left side - member profile image -->
-                <div class="product-left-image">
+                <div class="product-image">
                     <img src="{{ url_for('static', filename='images/' + member[1].lower() + 'profile.webp') }}" alt="{{ member[1] }} profile">
                 </div>
 
                 <!-- right side - member data + elements -->
-                <div class="product-right-info">
+                <div class="product-info">
                     <h1>NAME: {{ member[1] }}</h1>
                     
                     <p><strong>AGE:</strong> {{ member[2] }}</p>
@@ -26,7 +26,7 @@
                     <hr>
                     <!-- form to handle adding this specific member to the cart -->
                     <form action="/add_to_inventory/{{ member[0] }}" method="post">
-                        
+
                         <!-- button container-->
                         <button type="submit" class="action-btn inventory-add-btn">Add to Inventory</button>
                     </form>
