@@ -9,7 +9,7 @@
         <img src="{{ url_for('static', filename='images/BOYNEXTDOOR_Logo.png') }}" alt="BOYNEXTDOOR LOGO" class="home-main-logo">
         
         {% if session['user'] %}
-            <p class="welcome-text">Welcome, {{ session['user'][1] }}!</p>
+            <p class="welcome-text">Welcome, {{ session['user']}}!</p>
         {% endif %}
     </div>
 
