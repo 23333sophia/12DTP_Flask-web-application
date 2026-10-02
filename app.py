@@ -11,17 +11,20 @@ app = Flask(__name__)
 #secret key needed gor sessions and flash messages
 app.config['SECRET_KEY'] = "bnd"
 
+
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
     return db
 
+
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
+
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -30,7 +33,7 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-# Routes
+# =-=-=-=-=-=-=-=-=-===========================  Routes. ==============================================-=-=-=
 
 @app.route("/")
 def home():
@@ -38,7 +41,7 @@ def home():
 
 
 
-# discograhpy route
+# ======================================== discograhpy route ============================================
 @app.route("/discography")
 def discography():
     if 'user' not in session or session['user'] is None:
@@ -65,6 +68,7 @@ def discography():
 
     return render_template("discography.html", disco_data=disco_data)
 
+
 # dont allow users who have logged out access by clicking back in browser
 @app.after_request
 def add_no_cache_headers(response):
@@ -82,9 +86,7 @@ def add_no_cache_headers(response):
 
 
 
-
-
-#user sign up & login route
+#=================================. user sign up & login route ===============================
 @app.route('/signup', methods=["GET","POST"])
 def signup():
     if request.method == "POST":
@@ -120,6 +122,7 @@ def signup():
         flash("You are now signed up! Login to continue")
         return redirect('/login')
     return render_template('signup.html')
+
 
 
 @app.route('/login', methods=["GET","POST"])
@@ -167,7 +170,7 @@ def logout():
 
 
 
-# profile page route
+# ==================================== profile page route ======================================
 @app.route("/profile")
 def profile():
     if 'user' not in session or session['user'] is None:
@@ -175,6 +178,7 @@ def profile():
         return redirect('/login')
     
     return render_template("profile.html")
+
 
 # to bring each member profile for product.html and not make html for each member
 @app.route("/product/<int:member_id>")
@@ -187,7 +191,7 @@ def product(member_id):
 
 
 
-# inventory system
+# ====================================.  inventory system ================================================
 
 # displaying items in inventory
 @app.route("/inventory")
