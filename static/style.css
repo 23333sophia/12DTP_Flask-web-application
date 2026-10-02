@@ -1,4 +1,4 @@
-/* PROFILE PAGE.  */
+/* =========================================PROFILE PAGE. ============================================ */
 
 
 body { 
@@ -19,7 +19,7 @@ h2 {
 .card-image-container img { 
     width: 100%; 
     height: 100%;
-    object-fit: cover;  /* 다양한 크기의 멤버 사진이 구겨지지 않게 꽉 채워주는 유용한 속성 */
+    object-fit: cover;  /* filling the whole frame with image of various sizes */
 }
 
 .profile-grid {
@@ -92,7 +92,7 @@ h2 {
 }
 
 
-/* NAV BAR.  */
+/* ===========================================. NAV BAR. ================================================ */
 
 /* Add a black background color to the top navigation */
 .topnav {
@@ -132,7 +132,7 @@ h2 {
 
 
 
-/* DISCOGRAPHY SECTION */
+/* =======================================DISCOGRAPHY SECTION =============================================. */
 
 .container h1 {
      margin-bottom: 30px;
@@ -227,3 +227,59 @@ h2 {
    font-size: 15px;
    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
+
+
+
+/* ========================== HOME PAGE LAYOUT (index.html) 
+- todo
+
+top section
+.home-container
+.home-logo-box
+.home-main logo
+.welcome-text
+
+bottom section
+.home-grid
+.home-column
+.home-column h2 + hr
+
+.photo-box
+.home-portrait-img
+
+media list
+.media-list li
+.media-link
+.media-link:hover
+.media icon
+
+
+
+================================ */
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* logo section */
+.home-logo-box {
+    margin-bottom: 40px;
+}
+
+.home-main-logo {
+    max-width: 500px; /* logo size control */
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    color: #5e96b9;
+    font-weight: bold;
+}
+
+
+/* 3 Column Grid Styling */
