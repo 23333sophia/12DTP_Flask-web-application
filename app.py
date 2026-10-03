@@ -46,7 +46,7 @@ def home():
 @app.route("/discography")
 def discography():
     if 'user' not in session or session['user'] is None:
-        flash("Log in to check Boy Next Door's discography.")
+        flash("Log in to check Boy Next Door's discography.", "info")
         return redirect('/login')
 
 # querying structural album properties ordered sequentially by descending IDs
@@ -126,7 +126,7 @@ def signup():
         query_db(sql,(username, hashed_password))
         get_db().commit()
 
-        flash("You are now signed up! Login to continue")
+        flash("You are now signed up! Login to continue", "info")
         return redirect('/login')
     
     return render_template('signup.html')
@@ -150,17 +150,17 @@ def login():
             if check_password_hash(user[2], password): 
                 # checking whether the account is disabled
                 if user[3] == 0:
-                    flash('Account disabled.')
+                    flash("Account disabled.", "info")
                     return render_template('login.html')
                 else:
                     session['user'] = user[1]       # saving username in session
                     session['user_id'] = user[0]    # saving users own id in db                
-                    flash("Welcome!")
+                    flash("Welcome!", "info")
                     return redirect('/')
             else:
-                flash("Incorrect password")
+                flash("Incorrect password", "info")
         else:
-            flash("Username does not exist")
+            flash("Username does not exist", "info")
             
     return render_template('login.html')
 
@@ -173,7 +173,7 @@ def logout():
     """
     session.pop('user', None)
     session.pop('user_id', None)
-    flash("Logged out")
+    flash("Logged out", "info")
     return redirect('/')
 
 
@@ -188,7 +188,7 @@ def profile():
     restricted to authenticated identity holders through intercept checks
     """
     if 'user' not in session or session['user'] is None:
-        flash("Log in to check profile")
+        flash("Log in to check profile", "info")
         return redirect('/login')
     
     return render_template("profile.html")
@@ -218,7 +218,7 @@ def inventory():
     safely guards processing layers utilizing robust localized catch operations
     """
     if 'user' not in session or session['user'] is None:
-        flash("Log in to check your account")
+        flash("Log in to check your account", "info")
         return redirect('/login')
 
     user_id = session.get('user_id')
@@ -262,7 +262,7 @@ def add_to_inventory(member_id):
     pushes non-duplicate tracking layout blocks safely into application cache memory
     """
     if 'user' not in session or session['user'] is None:
-        flash("Please log in first to add to inventory")
+        flash("Please log in first to add to inventory", "info")
         return redirect('/login')
         
     user_id = session['user_id']
@@ -283,10 +283,20 @@ def add_to_inventory(member_id):
         session['inventory'] = current_inventory
         flash("Added to your inventory.")
     else:
-        flash("This already exists in your inventory.")
+        flash("This already exists in your inventory.", "info")
         return render_template("profile.html")
 
 
+    return redirect('/inventory')
+
+
+@app.route("/checkout_inventory", methods=["POST"])
+def checkout_inventory():
+    """
+    flashes a error warning to shock the user 
+    about the commercialization and packaging of human idols as shelf products
+    """
+    flash("YOUR ITEM IS NOT A PRODUCT. HUMANS ARE CURRENTLY NOT FOR SALE.", "warn")
     return redirect('/inventory')
 
 

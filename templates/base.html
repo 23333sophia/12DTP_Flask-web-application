@@ -23,16 +23,23 @@
     </nav>
     <!-- This is the main page with most stuff we need in it -->
     <!-- moved flash messages here so they appear cleanly on every page without bullet points -->
-    <!-- 2. Flash Messages Zone -->
-    {% with messages = get_flashed_messages() %}
+    <!-- flash messages zone -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     <div class="flash-messages-container">
-        {% for message in messages %}
-        <p class="flash-message-text">{{ message }}</p>
+        {% for category, message in messages %}
+            <!-- for warning pop ups -->
+            {% if category == 'warn' %}
+                <p class="flash-message-text crisis-warn">{{ message }}</p>
+            {% else %}
+                <!-- for info pop ups to notify user -->
+                <p class="flash-message-text standard-info">{{ message }}</p>
+            {% endif %}
         {% endfor %}
     </div>
     {% endif %}
     {% endwith %}
+
 
     <!-- placing block content for all other html that extends with base.html will show up -->
     <div class="main-body-content">

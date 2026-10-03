@@ -5,22 +5,40 @@
     <h1>Your Inventory</h1>
     
     {% if inventory_items %}
+        <!-- responsive grid for inventory cards -->
         <div class="profile-grid">
             {% for item in inventory_items %}
                 <div class="member-card">
-                    <h3>{{ item[1] }}</h3>
-                    <p>Blood Type: {{ item[4] }}</p>
-                    <a href="/product/{{ item[0] }}" style="font-size: 13px; color: #007BFF;">View Details</a>
+                    <!-- matching image container to fix the empty block -->
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='images/' + item[1].lower() + 'profile.webp') }}" alt="{{ item[1] }} profile">
+                    </div>
+                    
+                    <!-- content box containing text and view details anchor link -->
+                    <div class="card-name-box">
+                        <h3>{{ item[1] }}</h3>
+                        <p style="margin: 5px 0 0 5px; color: #f0f0f0; font-size: 13px;">Blood Type: {{ item[4] }}</p>
+                        <a href="/product/{{ item[0] }}" style="font-size: 13px; color: #ffffff; display: block; padding-left: 5px; margin-top: 10px; text-decoration: underline;">View Details</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
+
+        <!-- button layout - go back btn-->
+        <div class="inventory-action-panel">
+            <a href="/profile" class="action-btn back-btn-link">Continue Browsing</a>
+
+            <!-- button layout - warning trigger checkout -->
+            <form action="/checkout_inventory" method="post" style="display: inline-block;">
+                <button type="submit" class="action-btn checkout-btn">CHECKOUT</button>
+            </form>
+        </div>
+
     {% else %}
         <p>Your inventory is currently empty.</p>
+        <br><br>
+        <a href="/profile" class="action-btn back-btn-link">Continue Browsing</a>
     {% endif %}
-    
-    <br><br>
-    <a href="/profile">Continue Browsing</a>
 </div>
-
 
 {% endblock %}
