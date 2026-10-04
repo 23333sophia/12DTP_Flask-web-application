@@ -122,8 +122,8 @@ def signup():
         hashed_password = generate_password_hash(password, method='pbkdf2')
 
         # allocation ensuring user activation state begins at 1
-        sql = "INSERT INTO user (username, password) VALUES (?,?)"
-        query_db(sql,(username, hashed_password))
+        sql = "INSERT INTO user (username, password, active) VALUES (?, ?, 1)"
+        query_db(sql, (username, hashed_password))
         get_db().commit()
 
         flash("You are now signed up! Login to continue", "info")
