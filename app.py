@@ -1,6 +1,6 @@
 
 
-from flask import Flask, render_template, request,flash, session, redirect, g
+from flask import Flask, render_template, request, flash, session, redirect, g
 import sqlite3
 #to generate and check password password hashes
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -41,7 +41,6 @@ def home():
     return render_template('index.html')
 
 
-
 # discograhpy route
 @app.route("/discography")
 def discography():
@@ -49,7 +48,7 @@ def discography():
         flash("Log in to check Boy Next Door's discography.", "info")
         return redirect('/login')
 
-# querying structural album properties ordered sequentially by descending IDs
+    # querying structural album properties ordered sequentially by descending IDs
     album_sql = "SELECT * FROM album ORDER BY album_id DESC"
     all_albums = query_db(album_sql)
 
@@ -87,9 +86,8 @@ def add_no_cache_headers(response):
     return response
 
 
-
 # user sign up & login route
-@app.route('/signup', methods=["GET","POST"])
+@app.route('/signup', methods=["GET", "POST"])
 def signup():
     """
     validates user creation requests
@@ -132,7 +130,6 @@ def signup():
     return render_template('signup.html')
 
 
-
 @app.route('/login', methods=["GET","POST"])
 def login():
     if request.method == "POST":
@@ -165,7 +162,6 @@ def login():
     return render_template('login.html')
 
 
-
 @app.route('/logout')
 def logout():
     """
@@ -175,9 +171,6 @@ def logout():
     session.pop('user_id', None)
     flash("Logged out", "info")
     return redirect('/')
-
-
-
 
 
 # ==================================== profile page route ======================================
@@ -194,7 +187,6 @@ def profile():
     return render_template("profile.html")
 
 
-
 @app.route("/product/<int:member_id>")
 def product(member_id):
     """
@@ -206,11 +198,7 @@ def product(member_id):
     return render_template("product.html", member=member_data)
 
 
-
-
 # ====================================.  inventory system ================================================
-
-
 @app.route("/inventory")
 def inventory():
     """
@@ -252,9 +240,6 @@ def inventory():
     return render_template("inventory.html", inventory_items=inventory_members)
 
 
-
-
-
 # to  add a member to the inventory
 @app.route("/add_to_inventory/<int:member_id>", methods=["POST"])
 def add_to_inventory(member_id):
@@ -286,7 +271,6 @@ def add_to_inventory(member_id):
         flash("This already exists in your inventory.", "info")
         return render_template("profile.html")
 
-
     return redirect('/inventory')
 
 
@@ -298,8 +282,6 @@ def checkout_inventory():
     """
     flash("YOUR ITEM IS NOT A PRODUCT. HUMANS ARE CURRENTLY NOT FOR SALE.", "warn")
     return redirect('/inventory')
-
-
 
 
 if __name__ == "__main__":
