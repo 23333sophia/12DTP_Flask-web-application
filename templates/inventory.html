@@ -11,9 +11,8 @@
                 <div class="member-card">
                     <!-- matching image container to fix the empty block -->
                     <div class="card-image-container">
-                        <img src="{{ url_for('static', filename='images/' + item[1].lower() + 'profile.webp') }}" alt="{{ item[1] }} profile">
+                        <img src="{{ url_for('static', filename='images/' + item[6]) }}" alt="{{ item[1] }} profile">
                     </div>
-                    
                     <!-- content box containing text and view details anchor link -->
                     <div class="card-name-box">
                         <h3>{{ item[1] }}</h3>

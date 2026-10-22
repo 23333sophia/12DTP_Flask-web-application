@@ -236,7 +236,7 @@ def inventory():
             member_data = query_db(sql, (item_member_id,), one=True)
             if member_data:
                 inventory_members.append(member_data)
-    
+    print(inventory_members)
     return render_template("inventory.html", inventory_items=inventory_members)
 
 

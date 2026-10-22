@@ -8,7 +8,7 @@
                 
                 <!-- left side - member profile image -->
                 <div class="product-image">
-                    <img src="{{ url_for('static', filename='images/' + member[1].lower() + 'profile.webp') }}" alt="{{ member[1] }} profile">
+                    <img src="{{ url_for('static', filename='images/' + member[1].lower() + 'profile.jpeg') }}" alt="{{ member[1] }} profile">
                 </div>
 
                 <!-- right side - member data + elements -->
@@ -17,7 +17,7 @@
                     
                     <p><strong>AGE:</strong> {{ member[2] }}</p>
                     
-                    <p><strong>BLOODTYPE:</strong> {{ member[4] }}</p>
+                    <!-- <p><strong>BLOODTYPE:</strong> {{ member[4] }}</p> -->
                     
                     <p><strong>GROUP POSITION:</strong> {{ member[3] }}</p>
 
